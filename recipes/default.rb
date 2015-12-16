@@ -91,7 +91,7 @@ users.each do |user, data|
     dup['email'] = "#{user}@#{node['database-bulk']['domain']}" unless dup['email']
   end
 
-  unless dup['status']
+  if dup['action'] == 'create' and !dup['status']
     template "db-mail-#{user}" do
       source 'email.erb'
       path "#{Chef::Config['file_cache_path']}/bulk-mail-#{user}"
@@ -113,10 +113,9 @@ users.each do |user, data|
       command "rm #{Chef::Config['file_cache_path']}/bulk-mail-#{user} && sleep #{node['database-bulk']['sleep']}"
       action :nothing
     end
-
-    dup['status'] = dup['action']
-    dup['time'] = Time.now
   end
 
+  dup['time'] = Time.now if dup['status'] != dup['action']
+  dup['status'] = dup['action']
   node.set['database-bulk']['users'][user] = dup
 end
