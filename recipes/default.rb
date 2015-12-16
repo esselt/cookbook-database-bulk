@@ -59,7 +59,6 @@ end
 # Handle users and databases
 users.each do |user, data|
   dup = data.dup
-  data['time'] = Time.now
   dup['password'] = data['password'] || ([nil]*8).map { ((48..57).to_a+(65..90).to_a+(97..122).to_a).sample.chr }.join
 
   mysql_database user do
@@ -92,8 +91,6 @@ users.each do |user, data|
     dup['email'] = "#{user}@#{node['database-bulk']['domain']}" unless dup['email']
   end
 
-  node.set['database-bulk']['users'][user] = dup
-
   unless dup['status']
     template "db-mail-#{user}" do
       source 'email.erb'
@@ -116,5 +113,10 @@ users.each do |user, data|
       command "rm #{Chef::Config['file_cache_path']}/bulk-mail-#{user} && sleep #{node['database-bulk']['sleep']}"
       action :nothing
     end
+
+    dup['status'] = dup['action']
+    dup['time'] = Time.now
   end
+
+  node.set['database-bulk']['users'][user] = dup
 end
