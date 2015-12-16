@@ -42,6 +42,7 @@ node['database-bulk']['grouping'].each do |group, data|
 end
 
 # Find current status for users, and cleanup
+node['database-bulk']['users'] = {} unless node['database-bulk']['users']
 node['database-bulk']['users'].each do |user, data|
   if users.has_key?(user)
     users[user].merge!({
