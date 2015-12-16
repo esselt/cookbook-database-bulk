@@ -52,7 +52,7 @@ node['database-bulk']['users'].each do |user, data|
         'email' => data['email']
     })
   else
-    node['database-bulk'].delete('users', user)
+    node.set['database-bulk']['users'].delete(user)
   end
 end
 
