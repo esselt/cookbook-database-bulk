@@ -52,7 +52,7 @@ node['database-bulk']['users'].each do |user, data|
         'email' => data['email']
     })
   else
-    node.delete('database-bulk', 'users', user)
+    node['database-bulk'].delete('users', user)
   end
 end
 
@@ -101,6 +101,7 @@ users.each do |user, data|
 
     execute "db-send-#{user}" do
       cmd  = "mail -s 'MySQL database og konto opprettet for #{user} ved IIE'"
+      cmd += " -aFrom:#{node['database-bulk']['from']}" if node['database-bulk']['from']
       cmd += " -b #{node['database-bulk']['bcc_to'].join(',')}" if node['database-bulk']['bcc_to']
       cmd += " #{dup['email']}"
       cmd += " < #{Chef::Config['file_cache_path']}/bulk-mail-#{user}"

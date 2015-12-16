@@ -43,6 +43,7 @@ Example role
         'password' => nil,          # OPTIONAL. Password of admin user
         'data_bag' => 'users',      # OPTIONAL. Data bag to search for e-mail to users
         'domain' => 'sub.doma.in',  # Domain to which information e-mail is sent
+        'from' => 'e@ma.il',        # OPTIONAL. From address of email
         'bcc_to' => ['e@ma.il'],    # OPTIONAL. Send copy of user creation mail to BCC
         'grouping' => {
           'name' => {                 # Logic grouping of users
