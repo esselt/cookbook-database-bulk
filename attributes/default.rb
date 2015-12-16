@@ -23,4 +23,5 @@ default['database-bulk']['password']  = nil
 default['database-bulk']['data_bag']  = 'users'
 default['database-bulk']['sleep']     = 7
 default['database-bulk']['bcc_to']    = nil
+default['database-bulk']['grouping']  = []
 
