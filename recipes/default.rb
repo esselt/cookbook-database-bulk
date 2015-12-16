@@ -105,7 +105,7 @@ users.each do |user, data|
     execute "db-send-#{user}" do
       cmd  = "mail -s 'MySQL database og konto opprettet for #{user} ved IIE'"
       cmd += " -r 'iie-noreply@iie.hist.no' #{dup['email']}"
-      cmd += " -b #{node['database-bulk']['bcc_to'].join}" if node['database-bulk']['bcc_to']
+      cmd += " -b #{node['database-bulk']['bcc_to'].join(',')}" if node['database-bulk']['bcc_to']
       cmd += " < #{Chef::Config['file_cache_path']}/bulk-mail-#{user}"
       command cmd
       notifies :run, "execute[db-delete-#{user}]", :immediately
