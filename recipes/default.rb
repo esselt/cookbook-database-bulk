@@ -26,7 +26,7 @@ end
 mysql_connection = {
     :host => node['database-bulk']['host'],
     :username => node['database-bulk']['user'],
-    :password => node['database-bulk']['host'] || node['mysql']['server_root_password']
+    :password => node['database-bulk']['password'] || node['mysql']['server_root_password']
 }
 
 # Empty holder for users
