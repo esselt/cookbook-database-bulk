@@ -6,7 +6,7 @@ Cookbook that sets up a traditional LAMP stack.
 Requirements
 ------------
 
-Chef version 11.0+
+Chef version 12.0+
 
 #### cookbooks
 - `lamp-stack` - Installs and configures full LAMP-stack
