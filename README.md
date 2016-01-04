@@ -46,10 +46,11 @@ Example role
         'from' => 'e@ma.il',        # OPTIONAL. From address of email
         'bcc_to' => ['e@ma.il'],    # OPTIONAL. Send copy of user creation mail to BCC
         'grouping' => {
-          'name' => {                 # Logic grouping of users
-            'action' => 'create',     # What to do with users, create or drop
+          'name' => {               # Logic grouping of users or name of group
+            'action' => 'create',   # What to do with users, create or drop
+            'is_group' => false,    # Can be group (true) then all members gets an e-mail and group name is username
             'users' => {
-              'username1',              # Creates database and user with rights to named database
+              'username1',          # Creates database and user with rights to named database
               'username2',
               'username3'
             }

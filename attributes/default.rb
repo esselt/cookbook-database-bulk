@@ -17,12 +17,13 @@
 # limitations under the License.
 #
 
-default['database-bulk']['host']      = '127.0.0.1'
-default['database-bulk']['user']      = 'root'
-default['database-bulk']['password']  = nil
-default['database-bulk']['data_bag']  = 'users'
-default['database-bulk']['sleep']     = 7
-default['database-bulk']['bcc_to']    = nil
-default['database-bulk']['from']      = nil
-default['database-bulk']['grouping']  = []
+default['database-bulk']['host']          = '127.0.0.1'
+default['database-bulk']['user']          = 'root'
+default['database-bulk']['password']      = nil
+default['database-bulk']['data_bag']      = 'users'
+default['database-bulk']['sleep']         = 7
+default['database-bulk']['bcc_to']        = nil
+default['database-bulk']['from']          = nil
+default['database-bulk']['grouping']      = []
+default['database-bulk']['group_prefix']  = 'g_'
 
